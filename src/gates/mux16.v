@@ -11,8 +11,10 @@ input sel;
 output [15:0] out;
 
 genvar i;
-for (i = 0; i < 16; i = i + 1) begin
-    _mux mux1(.a(a[i]), .b(b[i]), .sel(sel), .out(out[i]));
-end
+generate
+    for (i = 0; i < 16; i = i + 1) begin : mux_loop
+        _mux mux_inst(.a(a[i]), .b(b[i]), .sel(sel), .out(out[i]));
+    end
+endgenerate
 
 endmodule

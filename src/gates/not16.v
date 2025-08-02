@@ -6,8 +6,11 @@ module _not16(
 input [15:0] a;
 output [15:0] out;
 
-for (genvar i = 0; i<16 ; i = i + 1) begin
-    _not not1(.a(a[i]), .out(out[i]));
-end
+genvar i;
+generate
+    for (i = 0; i < 16; i = i + 1) begin : not_loop
+        _not not_inst(.a(a[i]), .out(out[i]));
+    end
+endgenerate
 
 endmodule
